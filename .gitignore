@@ -244,3 +244,5 @@ ModelManifest.xml
 .vs
 .idea
 
+# Verify test files
+*.received.txt
