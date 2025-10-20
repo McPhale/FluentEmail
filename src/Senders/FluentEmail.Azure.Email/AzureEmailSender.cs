@@ -138,11 +138,12 @@ public class AzureEmailSender : ISender
             _ => 3
         }).ToString());
 
+        string messageId = null;
 
         try
         {
             EmailSendOperation sendOperation = await _emailClient.SendAsync(WaitUntil.Started, emailMessage, token ?? CancellationToken.None);
-            var messageId = sendOperation.Id;
+            messageId = sendOperation.Id;
             if (string.IsNullOrWhiteSpace(messageId))
             {
                 return new SendResponse
@@ -153,10 +154,10 @@ public class AzureEmailSender : ISender
             
             // We want to verify that the email was sent.
             // The maximum time we will wait for the message status to be sent/delivered is 2 minutes.
-            var cancellationToken = new CancellationTokenSource(TimeSpan.FromMinutes(2));
-            var sendStatusResult = sendOperation.WaitForCompletion(cancellationToken.Token).Value;
+            using var cancellationToken = new CancellationTokenSource(TimeSpan.FromMinutes(2));
+            var sendStatusResult = await sendOperation.WaitForCompletionAsync(cancellationToken.Token);
 
-            if (sendStatusResult.Status == EmailSendStatus.Succeeded)
+            if (sendStatusResult.Value.Status == EmailSendStatus.Succeeded)
             {
                 return new SendResponse
                 {
@@ -168,12 +169,14 @@ public class AzureEmailSender : ISender
             {
                 return new SendResponse
                 {
+                    MessageId = messageId,
                     ErrorMessages = new List<string> { "Failed to send email, timed out while getting status." }
                 };
             }
             
             return new SendResponse
             {
+                MessageId = messageId,
                 ErrorMessages = new List<string> { "Failed to send email." }
             };
         }
@@ -181,6 +184,7 @@ public class AzureEmailSender : ISender
         {
             return new SendResponse
             {
+                MessageId = messageId,
                 ErrorMessages = new List<string> { ex.Message }
             };
         }
