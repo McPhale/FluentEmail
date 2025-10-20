@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using FluentAssertions;
+using AwesomeAssertions;
 using FluentEmail.Core;
 using Fluid;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
-using NUnit.Framework;
+using Xunit;
 
 namespace FluentEmail.Liquid.Tests.ComplexModel
 {
@@ -16,7 +16,7 @@ namespace FluentEmail.Liquid.Tests.ComplexModel
             SetupRenderer();
         }
 
-        [Test]
+        [Fact]
         public void Can_Render_Complex_Model_Properties()
         {
             var model = new ParentModel

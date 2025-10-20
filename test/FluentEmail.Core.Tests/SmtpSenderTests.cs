@@ -3,12 +3,13 @@ using System.Net.Mail;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentEmail.Core;
-using NUnit.Framework;
+using Xunit;
+using AwesomeAssertions;
 using Attachment = FluentEmail.Core.Models.Attachment;
 
 namespace FluentEmail.Smtp.Tests
 {
-    [NonParallelizable]
+    // Note: XUnit runs tests in parallel by default. Use Collection attribute if sequential execution is needed.
     public class SmtpSenderTests
     {
         // Warning: To pass, an smtp listener must be running on localhost:25.
@@ -29,11 +30,7 @@ namespace FluentEmail.Smtp.Tests
         public SmtpSenderTests()
         {
             tempDirectory = Path.Combine(Path.GetTempPath(), "EmailTest");
-        }
-
-        [SetUp]
-        public void SetUp()
-        {
+            
             var sender = new SmtpSender(() => new SmtpClient("localhost")
             {
                 EnableSsl = false,
@@ -45,13 +42,13 @@ namespace FluentEmail.Smtp.Tests
             Directory.CreateDirectory(tempDirectory);
         }
 
-        [TearDown]
+        // Note: XUnit uses IDisposable for cleanup instead of TearDown.
         public void TearDown()
         {
             Directory.Delete(tempDirectory, true);
         }
 
-        [Test]
+        [Fact]
         public void CanSendEmail()
         {
             var email = TestEmail
@@ -60,11 +57,11 @@ namespace FluentEmail.Smtp.Tests
             var response = email.Send();
 
             var files = Directory.EnumerateFiles(tempDirectory, "*.eml");
-            Assert.IsTrue(response.Successful);
-            Assert.IsNotEmpty(files);
+            (response.Successful).Should().BeTrue();
+            (files).Should().NotBeEmpty();
         }
 
-        [Test]
+        [Fact]
         public async Task CanSendEmailWithAttachments()
         {
             var stream = new MemoryStream();
@@ -85,12 +82,12 @@ namespace FluentEmail.Smtp.Tests
 
             var response = await email.SendAsync();
 
-            Assert.IsTrue(response.Successful);
+            (response.Successful).Should().BeTrue();
             var files = Directory.EnumerateFiles(tempDirectory, "*.eml");
-            Assert.IsNotEmpty(files);
+            (files).Should().NotBeEmpty();
         }
 
-        [Test]
+        [Fact]
         public async Task CanSendAsyncHtmlAndPlaintextTogether()
         {
             var email = TestEmail
@@ -99,10 +96,10 @@ namespace FluentEmail.Smtp.Tests
 
             var response = await email.SendAsync();
 
-            Assert.IsTrue(response.Successful);
+            (response.Successful).Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void CanSendHtmlAndPlaintextTogether()
         {
             var email = TestEmail
@@ -111,10 +108,10 @@ namespace FluentEmail.Smtp.Tests
 
             var response = email.Send();
 
-            Assert.IsTrue(response.Successful);
+            (response.Successful).Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void CancelSendIfCancelationRequested()
         {
             var email = TestEmail;
@@ -124,7 +121,7 @@ namespace FluentEmail.Smtp.Tests
 
             var response = email.Send(tokenSource.Token);
 
-            Assert.IsFalse(response.Successful);
+            (response.Successful).Should().BeFalse();
         }
     }
 }
