@@ -1,6 +1,8 @@
-![alt text](https://raw.githubusercontent.com/lukencode/FluentEmail/master/assets/fluentemail_logo_64x64.png "FluentEmail")
+![alt text](https://raw.githubusercontent.com/jcamp-code/FluentEmail/main/assets/fluentemail_logo_64x64.png "FluentEmail")
 
 # FluentEmail - All in one email sender for .NET and .NET Core
+
+Now for .NET 8.0, 9.0 and 10.0.
 
 The easiest way to send email from .NET and .NET Core. Use Razor or Liquid for email templates and send using SendGrid, MailGun, MailKit, SMTP and more.
 
