@@ -1,7 +1,9 @@
+using FluentEmail.Core;
+using FluentEmail.Core.Tests;
 using FluentEmail.Mailgun;
 using Newtonsoft.Json;
 
-namespace FluentEmail.Core.Tests.ThirdParty;
+namespace FluentEmail.ThirdParty.Tests;
 
 public class MailgunSenderTests
 {

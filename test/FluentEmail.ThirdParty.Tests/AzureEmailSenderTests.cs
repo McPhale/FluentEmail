@@ -1,6 +1,8 @@
 using FluentEmail.Azure.Email;
+using FluentEmail.Core;
+using FluentEmail.Core.Tests;
 
-namespace FluentEmail.Core.Tests.ThirdParty;
+namespace FluentEmail.ThirdParty.Tests;
 
 public class AzureEmailSenderTests
 {

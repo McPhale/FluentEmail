@@ -1,7 +1,9 @@
+using FluentEmail.Core;
+using FluentEmail.Core.Tests;
 using FluentEmail.Postmark;
 using System.Collections.Generic;
 
-namespace FluentEmail.Core.Tests.ThirdParty;
+namespace FluentEmail.ThirdParty.Tests;
 
 public class PostmarkSenderTests
 {

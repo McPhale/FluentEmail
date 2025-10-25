@@ -5,7 +5,6 @@
     <AssemblyTitle>Fluent Email - Bootstrap</AssemblyTitle>
     <Authors>John Campion</Authors>
     <PackageTags>$(PackageTags);bootstrap</PackageTags>
-    <TargetFramework>net6.0</TargetFramework>
     <AssetsDirectory>../../../assets</AssetsDirectory>
     <NoWarn>NU5104</NoWarn>
     <Nullable>enable</Nullable>
@@ -17,11 +16,15 @@
     <ProjectReference Include="..\..\FluentEmail.Core\FluentEmail.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="README.md" Pack="true" PackagePath="\"/>
+    <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="UnDotNet.BootstrapEmail" Version="1.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Microsoft.SourceLink.GitHub" Version="8.0.0" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,8 @@
+using FluentEmail.Core;
+using FluentEmail.Core.Tests;
 using FluentEmail.Graph;
 
-namespace FluentEmail.Core.Tests.ThirdParty;
+namespace FluentEmail.ThirdParty.Tests;
 
 public class GraphSenderTests
 {

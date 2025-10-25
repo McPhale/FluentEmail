@@ -1,12 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
     <Description>Now we're talking. Send emails via SMTP.</Description>
     <AssemblyTitle>Fluent Email - SMTP</AssemblyTitle>
     <Authors>Luke Lowrey;Ben Cull;Github Contributors</Authors>
     <PackageTags>$(PackageTags);smtp</PackageTags>
-    <TargetFramework>net6.0</TargetFramework>
     <PackageId>jcamp.$(AssemblyName)</PackageId>
     <Product>jcamp.$(AssemblyName)</Product>
   </PropertyGroup>
@@ -16,7 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="README.md" Pack="true" PackagePath="\"/>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Microsoft.SourceLink.GitHub" Version="8.0.0" />
   </ItemGroup>
 
 </Project>

@@ -5,7 +5,6 @@
     <AssemblyTitle>Fluent Email - SendGrid</AssemblyTitle>
     <Authors>Luke Lowrey;Ben Cull;Ricardo Santos;Github Contributors</Authors>
     <PackageTags>$(PackageTags);sendgrid</PackageTags>
-    <TargetFramework>net6.0</TargetFramework>
     <PackageId>jcamp.$(AssemblyName)</PackageId>
     <Product>jcamp.$(AssemblyName)</Product>
   </PropertyGroup>
@@ -15,11 +14,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="README.md" Pack="true" PackagePath="\"/>
+    <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Sendgrid" Version="9.28.1" />
+    <PackageReference Include="Sendgrid" Version="9.29.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Microsoft.SourceLink.GitHub" Version="8.0.0" />
   </ItemGroup>
 
 </Project>
