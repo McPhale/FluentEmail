@@ -63,7 +63,9 @@ namespace FluentEmail.MailKitSmtp
 
                 using (var client = _protocolLogger == null ? new SmtpClient() : new SmtpClient(_protocolLogger))
                 {
-                    if(_smtpClientOptions.ServerCertificateValidationCallback != null)
+                    client.CheckCertificateRevocation = _smtpClientOptions.CheckCertificateRevocation;
+
+                    if (_smtpClientOptions.ServerCertificateValidationCallback != null)
                     {
                         client.ServerCertificateValidationCallback = _smtpClientOptions.ServerCertificateValidationCallback;
                     }
