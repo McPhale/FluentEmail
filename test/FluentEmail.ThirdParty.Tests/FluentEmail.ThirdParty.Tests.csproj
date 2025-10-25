@@ -20,7 +20,7 @@
     </None>
     <EmbeddedResource Include="test-embedded.txt" />
     <PackageReference Include="dotenv.net" Version="4.0.0" />
-    <None Update=".env">
+    <None Update=".en-johnv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update=".env.sample">

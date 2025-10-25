@@ -16,7 +16,7 @@ public static class StreamExtensions
 
         stream.Seek(0, SeekOrigin.Begin);
         // ReSharper disable once MustUseReturnValue
-        stream.Read(bytes, 0, (int)stream.Length);
+        stream.ReadExactly(bytes, 0, (int)stream.Length);
 
         return Convert.ToBase64String(bytes);
     }
